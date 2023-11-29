@@ -1,2 +1,3 @@
+- Make Docker exit quicker / Spawn Nodemon process through code instead of CLI?
 - Routing as a class
 - templating
