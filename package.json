@@ -1,0 +1,16 @@
+{
+  "name": "dock-node-server",
+  "version": "0.0.1",
+  "description": "Screwing around with a dockerized node.js application",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon -L index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Xaveer van der Laan",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
