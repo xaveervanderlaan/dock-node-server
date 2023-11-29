@@ -21,12 +21,16 @@ const server = http.createServer((req, res) => {
         res.end(data);
       });
 
-      //res.write("<h1>Welcome to my site!</h1>");
-
       break;
     case "/bla":
-      res.write("<h1>The BLA page!</h1>");
-      res.end();
+      fs.readFile("./app/pages/bla.html", "utf8", (err, data) => {
+        if (err) {
+          console.error(err);
+          return;
+        }
+        console.log(data);
+        res.end(data);
+      });
       break;
     default:
       res.statusCode = 404;
