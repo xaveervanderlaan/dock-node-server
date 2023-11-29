@@ -12,12 +12,10 @@ services:
     build:
       context: .
     environment:
-      NODE_ENV: production
+      NODE_ENV: development
     ports:
       - 3000:3000
     restart: always
-    volumes:
-      - .:/usr/src/app
     command: npm run start
 # The commented out section below is an example of how to define a PostgreSQL
 # database that your application can use. `depends_on` tells Docker Compose to
