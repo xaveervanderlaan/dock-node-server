@@ -1,13 +1,12 @@
 const http = require("node:http");
 const fs = require("node:fs");
+const process = require("node:process");
 
 const hostname = "0.0.0.0";
 const port = 3000;
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader("Content-Type", "text/html");
-
-  console.log(req);
   let url = req.url;
 
   switch (url) {
@@ -17,7 +16,7 @@ const server = http.createServer((req, res) => {
           console.error(err);
           return;
         }
-        console.log(data);
+        // console.log(data);
         res.end(data);
       });
 
@@ -28,7 +27,7 @@ const server = http.createServer((req, res) => {
           console.error(err);
           return;
         }
-        console.log(data);
+        // console.log(data);
         res.end(data);
       });
       break;
@@ -42,10 +41,16 @@ server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
 
-const gracefulShutdown = () => {
-  process.exit();
-};
+// const gracefulShutdown = () => {
+//   console.debug("shutdown123");
+//   process.exit();
+// };
 
-process.on("SIGINT", gracefulShutdown);
-process.on("SIGTERM", gracefulShutdown);
-process.on("SIGUSR2", gracefulShutdown); // Sent by nodemon
+// process.on("SIGINT", gracefulShutdown);
+// process.on("SIGTERM", gracefulShutdown);
+// process.on("SIGUSR2", gracefulShutdown); // Sent by nodemon
+
+process.on("SIGTERM", () => {
+  console.info("Interrupted");
+  process.exit(0);
+});
