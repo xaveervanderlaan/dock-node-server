@@ -32,6 +32,7 @@ COPY . .
 
 # Expose the port that the application listens on.
 EXPOSE 3000
+EXPOSE 9229
 
 # Run the application.
-CMD ["nodemon", "-L", "index.js"];
+CMD ["nodemon", "-L", "--inspect=0.0.0.0:9229", "index.js"];
