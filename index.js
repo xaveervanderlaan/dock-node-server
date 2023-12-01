@@ -41,16 +41,13 @@ server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
 
-// const gracefulShutdown = () => {
-//   console.debug("shutdown123");
-//   process.exit();
-// };
+console.log("Starting application");
 
-// process.on("SIGINT", gracefulShutdown);
-// process.on("SIGTERM", gracefulShutdown);
-// process.on("SIGUSR2", gracefulShutdown); // Sent by nodemon
+const gracefulShutdown = () => {
+  console.info("Shutting down...");
+  process.exit();
+};
 
-process.on("SIGTERM", () => {
-  console.info("Interrupted");
-  process.exit(0);
-});
+process.on("SIGINT", gracefulShutdown);
+process.on("SIGTERM", gracefulShutdown);
+process.on("SIGUSR2", gracefulShutdown); // Sent by nodemon

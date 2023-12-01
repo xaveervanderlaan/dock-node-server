@@ -11,8 +11,9 @@ FROM node:${NODE_VERSION}-alpine
 # Use production node environment by default.
 ENV NODE_ENV development
 
-
 WORKDIR /usr/src/app
+
+RUN npm install -g nodemon
 
 # Download dependencies as a separate step to take advantage of Docker's caching.
 # Leverage a cache mount to /root/.npm to speed up subsequent builds.
@@ -33,4 +34,4 @@ COPY . .
 EXPOSE 3000
 
 # Run the application.
-CMD ["node", "index.js"];
+CMD ["nodemon", "-L", "index.js"];
