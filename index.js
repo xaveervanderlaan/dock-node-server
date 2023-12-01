@@ -1,42 +1,26 @@
 const http = require("node:http");
 const fs = require("node:fs");
 const process = require("node:process");
+const router = require("find-my-way")({
+  defaultRoute: (req, res) => {
+    res.statusCode = 404;
+    res.end();
+  },
+});
 
 const hostname = "0.0.0.0";
 const port = 3000;
+
+router.on("GET", "/", (req, res, params) => {
+  res.end('{"message":"hello world"}');
+});
+
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader("Content-Type", "text/html");
-  let url = req.url;
-
-  switch (url) {
-    case "/test":
-      fs.readFile("./app/pages/test.html", "utf8", (err, data) => {
-        if (err) {
-          console.error(err);
-          return;
-        }
-        // console.log(data);
-        res.end(data);
-      });
-
-      break;
-    case "/bla":
-      fs.readFile("./app/pages/bla.html", "utf8", (err, data) => {
-        if (err) {
-          console.error(err);
-          return;
-        }
-        // console.log(data);
-        res.end(data);
-      });
-      break;
-    default:
-      res.statusCode = 404;
-      res.write("<h1>ERROR 404</h1>");
-      res.end();
-  }
+  router.lookup(req, res);
 });
+
 server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });

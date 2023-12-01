@@ -8,5 +8,8 @@
   },
   "keywords": [],
   "author": "Xaveer van der Laan",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "find-my-way": "^7.7.0"
+  }
 }
