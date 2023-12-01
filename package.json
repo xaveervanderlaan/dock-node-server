@@ -8,8 +8,5 @@
   },
   "keywords": [],
   "author": "Xaveer van der Laan",
-  "license": "MIT",
-  "devDependencies": {
-    "nodemon": "^3.0.1"
-  }
+  "license": "MIT"
 }
